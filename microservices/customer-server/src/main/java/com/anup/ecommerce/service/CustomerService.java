@@ -45,4 +45,17 @@ public class CustomerService {
 
         return CustomerMapper.toResponseList(customers);
     }
+
+    public CustomerResponse getCustomerById(String id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new CustomerNotFoundException(
+                        String.format("Customer not found with id: " + id)
+                ));
+
+        return CustomerMapper.toResponse(customer);
+    }
+
+    public boolean customerExists(String id) {
+        return customerRepository.existsById(id);
+    }
 }

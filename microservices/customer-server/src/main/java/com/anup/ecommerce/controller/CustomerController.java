@@ -27,10 +27,16 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getAllCustomers());
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable String id) {
-//        return ResponseEntity.ok(customerService.getCustomerById(id));
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable String id) {
+        return ResponseEntity.ok(customerService.getCustomerById(id));
+    }
+
+    @GetMapping("/exists/{id}")
+    public ResponseEntity<Boolean> checkCustomerExists(@PathVariable String id) {
+        boolean exists = customerService.customerExists(id);
+        return ResponseEntity.ok(exists);
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<CustomerResponse> updateCustomer(@PathVariable String id, @RequestBody @Valid CustomerUpdateRequest request) {
