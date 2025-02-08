@@ -15,6 +15,6 @@ public class Customer {
     private String id;
     private String firstName;
     private String lastName;
-    private String email;
+    private String email; // Add @Indexed(unique = true) later
     private Address address;
 }

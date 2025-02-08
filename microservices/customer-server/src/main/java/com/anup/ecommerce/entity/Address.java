@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 @Builder
 @Getter
 @Setter
-@Validated
+@Validated // Remove this later and implement validation outside of entity
 public class Address {
     private String street;
     private String houseNumber;
