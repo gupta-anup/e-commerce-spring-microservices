@@ -4,11 +4,11 @@ import com.anup.ecommerce.dto.request.CustomerCreateRequest;
 import com.anup.ecommerce.dto.request.CustomerUpdateRequest;
 import com.anup.ecommerce.dto.response.CustomerResponse;
 import com.anup.ecommerce.entity.Customer;
-import com.anup.ecommerce.exception.CustomerNotFoundException;
+import com.anup.ecommerce.exception.CustomException;
 import com.anup.ecommerce.mapper.CustomerMapper;
 import com.anup.ecommerce.repository.CustomerRepository;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,10 +27,11 @@ public class CustomerService {
         return CustomerMapper.toResponse(savedCustomer);
     }
 
-    public CustomerResponse updateCustomer(String id, @Valid CustomerUpdateRequest request) {
+    public CustomerResponse updateCustomer(String id, CustomerUpdateRequest request) {
         Customer existingCustomer = customerRepository.findById(id)
-                .orElseThrow(() -> new CustomerNotFoundException(
-                        String.format("Customer not found with id: " + id)
+                .orElseThrow(() -> new CustomException(
+                        String.format("Customer not found with id: " + id),
+                        HttpStatus.NOT_FOUND
                 ));
 
         Customer customer = CustomerMapper.toEntity(existingCustomer, request);
@@ -48,8 +49,9 @@ public class CustomerService {
 
     public CustomerResponse getCustomerById(String id) {
         Customer customer = customerRepository.findById(id)
-                .orElseThrow(() -> new CustomerNotFoundException(
-                        String.format("Customer not found with id: " + id)
+                .orElseThrow(() -> new CustomException(
+                        String.format("Customer not found with id: " + id),
+                        HttpStatus.NOT_FOUND
                 ));
 
         return CustomerMapper.toResponse(customer);
@@ -57,5 +59,15 @@ public class CustomerService {
 
     public boolean customerExists(String id) {
         return customerRepository.existsById(id);
+    }
+
+    public void deleteCustomer(String id) {
+        customerRepository.findById(id)
+                .orElseThrow(() -> new CustomException(
+                        String.format("Customer not found with id: " + id),
+                        HttpStatus.NOT_FOUND
+                ));
+
+        customerRepository.deleteById(id);
     }
 }
