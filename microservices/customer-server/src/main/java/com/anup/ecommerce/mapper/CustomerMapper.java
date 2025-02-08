@@ -6,6 +6,9 @@ import com.anup.ecommerce.dto.response.CustomerResponse;
 import com.anup.ecommerce.entity.Customer;
 import lombok.experimental.UtilityClass;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @UtilityClass
 public class CustomerMapper {
     public static Customer toEntity(CustomerCreateRequest request) {
@@ -42,5 +45,11 @@ public class CustomerMapper {
                 customer.getEmail(),
                 customer.getAddress()
         );
+    }
+
+    public static List<CustomerResponse> toResponseList(List<Customer> customers) {
+        return customers.stream()
+                .map(CustomerMapper::toResponse)
+                .toList();
     }
 }

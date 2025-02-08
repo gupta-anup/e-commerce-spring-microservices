@@ -22,10 +22,10 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.createCustomer(request));
     }
 
-//    @GetMapping
-//    public ResponseEntity<List<CustomerResponse>> getAllCustomers() {
-//        return ResponseEntity.ok(customerService.getAllCustomers());
-//    }
+    @GetMapping
+    public ResponseEntity<List<CustomerResponse>> getAllCustomers() {
+        return ResponseEntity.ok(customerService.getAllCustomers());
+    }
 
 //    @GetMapping("/{id}")
 //    public ResponseEntity<CustomerResponse> getCustomerById(@PathVariable String id) {

@@ -11,6 +11,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
@@ -36,5 +38,11 @@ public class CustomerService {
         Customer updatedCustomer = customerRepository.save(customer);
 
         return CustomerMapper.toResponse(updatedCustomer);
+    }
+
+    public List<CustomerResponse> getAllCustomers() {
+        List<Customer> customers = customerRepository.findAll();
+
+        return CustomerMapper.toResponseList(customers);
     }
 }
