@@ -1,6 +1,5 @@
-package com.anup.ecommerce.handler;
+package com.anup.ecommerce.exception;
 
-import com.anup.ecommerce.exception.CustomException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
