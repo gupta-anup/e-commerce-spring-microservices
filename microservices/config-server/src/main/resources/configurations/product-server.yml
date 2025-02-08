@@ -2,10 +2,10 @@ server:
   port: 8090
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/product_server_db
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/product_server_db
     username: anup
     password: anup
-    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate # We will be using Flyway for schema migration
