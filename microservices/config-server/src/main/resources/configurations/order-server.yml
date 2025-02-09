@@ -13,11 +13,10 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 application:
-  #Later we'll change the ports to our API Gateway port
   config:
     customer-server:
-      url: http://localhost:8080/api/v1/customers
+      url: http://localhost:8222/api/v1/customers
     product-server:
-      url: http://localhost:8090/api/v1/products
+      url: http://localhost:8222/api/v1/products
     payment-server:
-      url: http://localhost:8110/api/v1/payments
+      url: http://localhost:8222/api/v1/payments
