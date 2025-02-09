@@ -1,6 +1,7 @@
 package com.anup.ecommerce.controller;
 
 import com.anup.ecommerce.dto.request.ProductCreateRequest;
+import com.anup.ecommerce.dto.request.ProductPurchaseRequest;
 import com.anup.ecommerce.dto.response.ProductResponse;
 import com.anup.ecommerce.service.ProductService;
 import jakarta.validation.Valid;
@@ -20,6 +21,11 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<ProductResponse> createProduct(@RequestBody @Valid ProductCreateRequest request) {
         return ResponseEntity.ok(productService.createProduct(request));
+    }
+
+    @PostMapping("/purchase")
+    public ResponseEntity<List<ProductResponse>> purchaseProducts(@RequestBody List<ProductPurchaseRequest> request) {
+        return ResponseEntity.ok(productService.purchaseProducts(request));
     }
 
     @GetMapping
