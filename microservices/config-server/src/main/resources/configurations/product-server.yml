@@ -1,0 +1,20 @@
+server:
+  port: 8090
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/product_server_db
+    username: anup
+    password: anup
+  jpa:
+    hibernate:
+      ddl-auto: validate # We will be using Flyway for schema migration
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    baseline-description: "init"
+    baseline-version: 0
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}

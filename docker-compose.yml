@@ -33,7 +33,7 @@ services:
     image: mongo
     container_name: mongo_db
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - mongo:/data
     environment:
@@ -45,7 +45,7 @@ services:
     container_name: mongo_express
     restart: always
     ports:
-      - 8081:8081
+      - "8081:8081"
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=anup
       - ME_CONFIG_MONGODB_ADMINPASSWORD=anup
@@ -55,8 +55,8 @@ services:
     container_name: ms-mail-dev
     image: maildev/maildev
     ports:
-      - 1080:1080
-      - 1025:1025
+      - "1080:1080"
+      - "1025:1025"
 
 networks:
   microservices-net:

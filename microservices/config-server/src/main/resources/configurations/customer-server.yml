@@ -1,3 +1,5 @@
+server:
+  port: 8080
 spring:
   data:
     mongodb:
@@ -5,8 +7,5 @@ spring:
       password: anup
       host: localhost
       port: 27017
-      database: customerdb
+      database: customer_server_db
       authentication-database: admin
-
-server:
-  port: 8080
