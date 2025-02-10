@@ -68,4 +68,15 @@ public class OrderService {
 
         return savedOrder.getId();
     }
+
+    public List<OrderResponse> getAllOrders() {
+        return OrderMapper.toResponse(orderRepository.findAll());
+    }
+
+    public OrderResponse getOrderById(Long id) {
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new CustomException("Order not found", HttpStatus.NOT_FOUND));
+
+        return OrderMapper.toResponse(order);
+    }
 }
