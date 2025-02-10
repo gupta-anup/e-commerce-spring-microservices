@@ -1,8 +1,8 @@
 server:
-  port: 8100
+  port: 8110
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/order_server_db
+    url: jdbc:postgresql://localhost:5432/payment_server_db
     username: anup
     password: anup
     driver-class-name: org.postgresql.Driver
@@ -17,13 +17,4 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        spring.json.type.mapping: orderConfirmationRequest:com.anup.ecommerce.dto.request.OrderConfirmationRequest
-
-application:
-  config:
-    customer-server:
-      url: http://localhost:8222/api/v1/customers
-    product-server:
-      url: http://localhost:8222/api/v1/products
-    payment-server:
-      url: http://localhost:8222/api/v1/payments
+        spring.json.type.mapping: paymentConfirmation:com.anup.ecommerce.dto.request.PaymentNotificationRequest
