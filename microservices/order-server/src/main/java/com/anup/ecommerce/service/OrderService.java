@@ -1,15 +1,14 @@
 package com.anup.ecommerce.service;
 
-import com.anup.ecommerce.dto.request.OrderConfirmationRequest;
-import com.anup.ecommerce.dto.request.OrderLineCreateRequest;
-import com.anup.ecommerce.dto.request.PurchaseRequest;
+import com.anup.ecommerce.dto.request.*;
 import com.anup.ecommerce.dto.response.CustomerResponse;
 import com.anup.ecommerce.dto.response.PurchaseResponse;
 import com.anup.ecommerce.entity.Order;
 import com.anup.ecommerce.mapper.OrderMapper;
+import com.anup.ecommerce.mapper.PaymentMapper;
 import com.anup.ecommerce.ms_client.CustomerClient;
+import com.anup.ecommerce.ms_client.PaymentClient;
 import com.anup.ecommerce.ms_client.ProductClient;
-import com.anup.ecommerce.dto.request.OrderCreateRequest;
 import com.anup.ecommerce.dto.response.OrderResponse;
 import com.anup.ecommerce.exception.CustomException;
 import com.anup.ecommerce.repository.OrderRepository;
@@ -29,6 +28,7 @@ public class OrderService {
     private final ProductClient productClient;
     private final OrderLineService orderLineService;
     private final OrderProducerService orderProducerService;
+    private final PaymentClient paymentClient;
 
     public Long createOrder(@Valid OrderCreateRequest request) {
         // Check if the Customer exists -> customer-server (1-FeignClient)
@@ -53,7 +53,9 @@ public class OrderService {
             orderLineService.saveOrderLine(orderLineCreateRequest);
         }
 
-        // TODO: Start the payment process
+        // Start the payment process
+        PaymentRequest paymentRequest = PaymentMapper.toRequest(savedOrder, customer);
+        paymentClient.processPayment(paymentRequest);
 
         // Send the order confirmation notification -> notification-server (kafka)
         OrderConfirmationRequest orderConfirmationRequest = OrderConfirmationRequest.builder()
