@@ -7,9 +7,9 @@ import java.math.BigDecimal;
 
 @Getter
 public class PaymentCreateRequest {
-    BigDecimal amount;
-    PaymentMethod paymentMethod;
-    Long orderId;
-    String orderReference;
-    CustomerRequest customer;
+    private BigDecimal amount;
+    private PaymentMethod paymentMethod;
+    private Long orderId;
+    private String orderReference;
+    private CustomerRequest customer;
 }

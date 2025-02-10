@@ -11,9 +11,9 @@ import java.util.List;
 @Builder
 public class OrderConfirmationRequest {
 
-    String orderReference;
-    BigDecimal totalAmount;
-    PaymentMethod paymentMethod;
-    CustomerResponse customer;
-    List<PurchaseResponse> purchasedProducts;
+    private String orderReference;
+    private BigDecimal totalAmount;
+    private PaymentMethod paymentMethod;
+    private CustomerResponse customer;
+    private List<PurchaseResponse> purchasedProducts;
 }

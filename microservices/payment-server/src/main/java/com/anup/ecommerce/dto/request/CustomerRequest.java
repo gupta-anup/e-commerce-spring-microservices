@@ -8,15 +8,15 @@ import org.springframework.validation.annotation.Validated;
 @Getter
 @Validated
 public class CustomerRequest {
-    String id;
+    private String id;
 
     @NotBlank(message = "First name is mandatory")
-    String firstName;
+    private String firstName;
 
     @NotBlank(message = "Last name is mandatory")
-    String lastName;
+    private String lastName;
 
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Email should be valid")
-    String email;
+    private String email;
 }
