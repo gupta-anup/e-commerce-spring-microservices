@@ -29,7 +29,7 @@ public class Order {
     private PaymentMethod paymentMethod;
 
     // Since our databases are not linked, we will store the customer ID instead of the customer object
-    private Long customerId;
+    private String customerId;
 
     @OneToMany(mappedBy = "order")
     private List<OrderLine> orderLines;
