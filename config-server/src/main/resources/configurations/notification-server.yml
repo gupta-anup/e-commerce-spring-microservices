@@ -1,2 +1,36 @@
 server:
   port: 8120
+spring:
+  data:
+    mongodb:
+      username: anup
+      password: anup
+      host: localhost
+      port: 27017
+      database: customer_server_db
+      authentication-database: admin
+    kafka:
+      consumer:
+        bootstrap-servers: localhost:9092
+        group-id: payment-group, order-group
+        auto-offset-reset: earliest
+        key-deserializer: org.apache.kafka.common.serialization.StringSerializer
+        value-deserializer: org.springframework.kafka.support.serializer.JsonSerializer
+        properties:
+          spring.json.trusted.packages: "*"
+          spring.json.type.mapping: paymentConfirmation:com.anup.ecommerce.dto.request.PaymentNotificationRequest, orderConfirmationRequest:com.anup.ecommerce.dto.request.OrderConfirmationRequest
+    mail:
+      host: localhost
+      port: 1025
+      username: anup
+      password: anup
+      properties:
+        mail:
+          smtp:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
