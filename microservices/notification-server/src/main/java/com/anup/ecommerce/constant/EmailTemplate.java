@@ -1,8 +1,8 @@
 package com.anup.ecommerce.constant;
 
 public enum EmailTemplate {
-    PAYMENT_CONFIRMATION("email/payment-confirmation", "Payment Confirmation"),
-    ORDER_CONFIRMATION("email/order-confirmation", "Order Confirmation");
+    PAYMENT_CONFIRMATION("payment-confirmation.html", "Payment Confirmation"),
+    ORDER_CONFIRMATION("order-confirmation.html", "Order Confirmation");
 
     private final String template;
     private final String subject;
