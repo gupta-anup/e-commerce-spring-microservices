@@ -6,25 +6,24 @@ spring:
       discovery:
         locator:
           enabled: true
-      mvc:
-        routes:
-          - id: customer-server
-            uri: lb:http://CUSTOMER-SERVER
-            predicates:
-              - Path=/api/v1/customers/**
-          - id: product-server
-            uri: lb:http://PRODUCT-SERVER
-            predicates:
-              - Path=/api/v1/products/**
-          - id: order-server
-            uri: lb:http://ORDER-SERVER
-            predicates:
-              - Path=/api/v1/orders/**
-          - id: order-line-server
-            uri: lb:http://ORDER-SERVER
-            predicates:
-              - Path=/api/v1/order-lines/**
-          - id: payment-server
-            uri: lb:http://PAYMENT-SERVER
-            predicates:
-              - Path=/api/v1/payments/**
+      routes:
+        - id: customer-server
+          uri: lb:http://CUSTOMER-SERVER
+          predicates:
+            - Path=/api/v1/customers/**
+        - id: product-server
+          uri: lb:http://PRODUCT-SERVER
+          predicates:
+            - Path=/api/v1/products/**
+        - id: order-server
+          uri: lb:http://ORDER-SERVER
+          predicates:
+            - Path=/api/v1/orders/**
+        - id: order-line-server
+          uri: lb:http://ORDER-SERVER
+          predicates:
+            - Path=/api/v1/order-lines/**
+        - id: payment-server
+          uri: lb:http://PAYMENT-SERVER
+          predicates:
+            - Path=/api/v1/payments/**
