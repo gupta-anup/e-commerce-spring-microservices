@@ -7,7 +7,7 @@ spring:
       password: anup
       host: localhost
       port: 27017
-      database: customer_server_db
+      database: notification_server_db
       authentication-database: admin
     kafka:
       consumer:
