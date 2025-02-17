@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Builder
 public class OrderResponse {
-    private Long id;
+    private Integer id;
     private String reference;
     private BigDecimal totalAmount;
     private PaymentMethod paymentMethod;

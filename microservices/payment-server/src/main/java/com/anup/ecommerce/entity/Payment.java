@@ -21,12 +21,12 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-    private Long orderId;
+    private Integer orderId;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)

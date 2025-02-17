@@ -15,7 +15,7 @@ public class PaymentService {
     private final PaymentRepository paymentRepository;
     private final NotificationProducerService notificationProducerService;
 
-    public Long createPayment(PaymentCreateRequest request) {
+    public Integer createPayment(PaymentCreateRequest request) {
         Payment payment = paymentRepository.save(PaymentMapper.toEntity(request));
 
         notificationProducerService.sendNotification(NotificationMapper.toRequest(request));

@@ -30,7 +30,7 @@ public class OrderService {
     private final OrderProducerService orderProducerService;
     private final PaymentClient paymentClient;
 
-    public Long createOrder(@Valid OrderCreateRequest request) {
+    public Integer createOrder(@Valid OrderCreateRequest request) {
         // Check if the Customer exists -> customer-server (1-FeignClient)
         CustomerResponse customer = customerClient.findCustomerById(request.getCustomerId())
                 .orElseThrow(() -> new CustomException("Customer not found", HttpStatus.NOT_FOUND));
@@ -43,7 +43,7 @@ public class OrderService {
         Order savedOrder = orderRepository.save(order);
 
         // Persist the order line
-        for(PurchaseRequest purchaseRequest: request.getPurchaseItems()) {
+        for (PurchaseRequest purchaseRequest : request.getPurchaseItems()) {
             OrderLineCreateRequest orderLineCreateRequest = OrderLineCreateRequest.builder()
                     .orderId(savedOrder.getId())
                     .productId(purchaseRequest.getProductId())
@@ -75,7 +75,7 @@ public class OrderService {
         return OrderMapper.toResponse(orderRepository.findAll());
     }
 
-    public OrderResponse getOrderById(Long id) {
+    public OrderResponse getOrderById(Integer id) {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new CustomException("Order not found", HttpStatus.NOT_FOUND));
 

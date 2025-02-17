@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Getter
 public class ProductPurchaseRequest {
     @NotNull(message = "Product id is required")
-    private Long id;
+    private Integer id;
 
     @NotBlank(message = "Product name is required")
     private String name;
@@ -27,5 +27,5 @@ public class ProductPurchaseRequest {
     private BigDecimal price;
 
     @NotNull(message = "Product category id is required")
-    private Long categoryId;
+    private Integer categoryId;
 }

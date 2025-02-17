@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class PaymentRequest {
     private BigDecimal amount;
     private PaymentMethod paymentMethod;
-    private Long orderId;
+    private Integer orderId;
     private String orderReference;
     private CustomerResponse customer;
 }

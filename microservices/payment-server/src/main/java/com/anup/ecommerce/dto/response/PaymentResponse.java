@@ -7,8 +7,8 @@ import java.math.BigDecimal;
 
 @Builder
 public class PaymentResponse {
-    private Long id;
+    private Integer id;
     private BigDecimal amount;
     private PaymentMethod paymentMethod;
-    private Long orderId;
+    private Integer orderId;
 }

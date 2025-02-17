@@ -1,6 +1,7 @@
 package com.anup.ecommerce.mapper;
 
 import com.anup.ecommerce.dto.request.ProductCreateRequest;
+import com.anup.ecommerce.dto.response.CategoryResponse;
 import com.anup.ecommerce.dto.response.ProductResponse;
 import com.anup.ecommerce.entity.Category;
 import com.anup.ecommerce.entity.Product;
@@ -19,30 +20,28 @@ public class ProductMapper {
                 .category(
                         Category.builder()
                                 .id(request.getCategoryId())
-                                .build()
-                )
+                                .build())
                 .build();
     }
 
     public static Product toEntity(Product existingProduct, ProductCreateRequest request) {
-        if(request.getName() != null) {
+        if (request.getName() != null) {
             existingProduct.setName(request.getName());
         }
-        if(request.getDescription() != null) {
+        if (request.getDescription() != null) {
             existingProduct.setDescription(request.getDescription());
         }
-        if(request.getAvailableQuantity() > 0) {
+        if (request.getAvailableQuantity() > 0) {
             existingProduct.setAvailableQuantity(request.getAvailableQuantity());
         }
-        if(request.getPrice().longValue() > 0) {
+        if (request.getPrice().intValue() > 0) {
             existingProduct.setPrice(request.getPrice());
         }
-        if(request.getCategoryId() > 0) {
+        if (request.getCategoryId() > 0) {
             existingProduct.setCategory(
                     Category.builder()
                             .id(request.getCategoryId())
-                            .build()
-            );
+                            .build());
         }
 
         return existingProduct;
@@ -55,9 +54,11 @@ public class ProductMapper {
                 .description(product.getDescription())
                 .availableQuantity(product.getAvailableQuantity())
                 .price(product.getPrice())
-                .categoryId(product.getCategory().getId())
-                .categoryName(product.getCategory().getName())
-                .categoryDescription(product.getCategory().getDescription())
+                .category(CategoryResponse.builder()
+                        .id(product.getCategory().getId())
+                        .name(product.getCategory().getName())
+                        .description(product.getCategory().getDescription())
+                        .build())
                 .build();
     }
 

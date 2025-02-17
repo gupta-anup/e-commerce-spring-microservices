@@ -15,10 +15,10 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE) // remove all products when category is removed
-    private List<Product> products;
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE) // remove all products when category is removed
+//    private List<Product> products;
 }

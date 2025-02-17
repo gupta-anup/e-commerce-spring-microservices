@@ -22,14 +22,15 @@ import java.util.List;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String reference;
     private BigDecimal totalAmount;
 
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
 
-    // Since our databases are not linked, we will store the customer ID instead of the customer object
+    // Since our databases are not linked, we will store the customer ID instead of
+    // the customer object
     private String customerId;
 
     @OneToMany(mappedBy = "order")

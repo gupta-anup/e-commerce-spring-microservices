@@ -34,12 +34,13 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductResponse> getProductById(@PathVariable Long id) {
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable Integer id) {
         return ResponseEntity.ok(productService.getProductById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody @Valid ProductCreateRequest request) {
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Integer id,
+            @RequestBody @Valid ProductCreateRequest request) {
         return ResponseEntity.ok(productService.updateProduct(id, request));
     }
 }

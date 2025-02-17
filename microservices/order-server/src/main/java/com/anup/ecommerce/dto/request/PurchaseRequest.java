@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class PurchaseRequest {
     @NotNull(message = "Product id is required")
-    private Long productId;
+    private Integer productId;
 
     @Positive(message = "Product quantity must be greater than 0")
     private double quantity;
