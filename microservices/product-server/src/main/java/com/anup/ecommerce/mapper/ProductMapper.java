@@ -1,6 +1,7 @@
 package com.anup.ecommerce.mapper;
 
 import com.anup.ecommerce.dto.request.ProductCreateRequest;
+import com.anup.ecommerce.dto.response.CategoryResponse;
 import com.anup.ecommerce.dto.response.ProductResponse;
 import com.anup.ecommerce.entity.Category;
 import com.anup.ecommerce.entity.Product;
@@ -53,9 +54,11 @@ public class ProductMapper {
                 .description(product.getDescription())
                 .availableQuantity(product.getAvailableQuantity())
                 .price(product.getPrice())
-                .categoryId(product.getCategory().getId())
-                .categoryName(product.getCategory().getName())
-                .categoryDescription(product.getCategory().getDescription())
+                .category(CategoryResponse.builder()
+                        .id(product.getCategory().getId())
+                        .name(product.getCategory().getName())
+                        .description(product.getCategory().getDescription())
+                        .build())
                 .build();
     }
 
