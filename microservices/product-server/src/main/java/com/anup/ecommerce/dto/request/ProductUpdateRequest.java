@@ -17,5 +17,5 @@ public class ProductUpdateRequest {
     @Positive(message = "Product price must be greater than 0")
     private BigDecimal price;
 
-    private Long categoryId;
+    private Integer categoryId;
 }

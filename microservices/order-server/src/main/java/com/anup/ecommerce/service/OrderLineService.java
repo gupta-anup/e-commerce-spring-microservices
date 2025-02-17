@@ -16,7 +16,7 @@ public class OrderLineService {
 
     private final OrderLineRepository orderLineRepository;
 
-    public Long saveOrderLine(OrderLineCreateRequest orderLineCreateRequest) {
+    public Integer saveOrderLine(OrderLineCreateRequest orderLineCreateRequest) {
         OrderLine orderLine = OrderLineMapper.toEntity(orderLineCreateRequest);
 
         OrderLine savedOrderLine = orderLineRepository.save(orderLine);
@@ -24,7 +24,7 @@ public class OrderLineService {
         return savedOrderLine.getId();
     }
 
-    public List<OrderLineResponse> getOrderLinesByOrderId(Long orderId) {
+    public List<OrderLineResponse> getOrderLinesByOrderId(Integer orderId) {
         List<OrderLine> orderLines = orderLineRepository.findAllByOrderId(orderId);
 
         return OrderLineMapper.toResponse(orderLines);

@@ -29,12 +29,12 @@ public class ProductService {
     }
 
     public List<ProductResponse> purchaseProducts(List<ProductPurchaseRequest> request) {
-        List<Long> productIds = request.stream()
+        List<Integer> productIds = request.stream()
                 .map(ProductPurchaseRequest::getId)
                 .toList();
 
         List<Product> storedProducts = productRepository.findAllById(productIds);
-        if(productIds.size() != storedProducts.size()) {
+        if (productIds.size() != storedProducts.size()) {
             throw new CustomException("One or more products does not exist", HttpStatus.BAD_REQUEST);
         }
 
@@ -43,7 +43,7 @@ public class ProductService {
                 .toList();
 
         List<ProductResponse> purchasedProducts = new ArrayList<ProductResponse>();
-        for(int i = 0; i < storedProducts.size(); i++) {
+        for (int i = 0; i < storedProducts.size(); i++) {
             Product product = getProduct(storedProducts, i, sortedRequest);
             Product updatedProduct = productRepository.save(product);
 
@@ -56,11 +56,10 @@ public class ProductService {
         Product product = storedProducts.get(i);
         ProductPurchaseRequest productRequest = sortedRequest.get(i);
 
-        if(product.getAvailableQuantity() < productRequest.getAvailableQuantity()) {
+        if (product.getAvailableQuantity() < productRequest.getAvailableQuantity()) {
             throw new CustomException(
                     String.format("Not enough quantity for product with id: %s", product.getId()),
-                    HttpStatus.BAD_REQUEST
-            );
+                    HttpStatus.BAD_REQUEST);
         }
 
         double newAvailableQuantity = product.getAvailableQuantity() - productRequest.getAvailableQuantity();
@@ -74,22 +73,20 @@ public class ProductService {
         return ProductMapper.toResponseList(products);
     }
 
-    public ProductResponse getProductById(Long id) {
+    public ProductResponse getProductById(Integer id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new CustomException(
                         String.format("Product not found with id: %s", id),
-                        HttpStatus.NOT_FOUND
-                ));
+                        HttpStatus.NOT_FOUND));
 
         return ProductMapper.toResponse(product);
     }
 
-    public ProductResponse updateProduct(Long id, ProductCreateRequest request) {
+    public ProductResponse updateProduct(Integer id, ProductCreateRequest request) {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new CustomException(
                         String.format("Product not found with id: %s", id),
-                        HttpStatus.NOT_FOUND
-                ));
+                        HttpStatus.NOT_FOUND));
 
         Product product = ProductMapper.toEntity(existingProduct, request);
 

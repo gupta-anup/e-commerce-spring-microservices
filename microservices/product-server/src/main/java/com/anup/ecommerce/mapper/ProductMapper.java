@@ -19,30 +19,28 @@ public class ProductMapper {
                 .category(
                         Category.builder()
                                 .id(request.getCategoryId())
-                                .build()
-                )
+                                .build())
                 .build();
     }
 
     public static Product toEntity(Product existingProduct, ProductCreateRequest request) {
-        if(request.getName() != null) {
+        if (request.getName() != null) {
             existingProduct.setName(request.getName());
         }
-        if(request.getDescription() != null) {
+        if (request.getDescription() != null) {
             existingProduct.setDescription(request.getDescription());
         }
-        if(request.getAvailableQuantity() > 0) {
+        if (request.getAvailableQuantity() > 0) {
             existingProduct.setAvailableQuantity(request.getAvailableQuantity());
         }
-        if(request.getPrice().longValue() > 0) {
+        if (request.getPrice().intValue() > 0) {
             existingProduct.setPrice(request.getPrice());
         }
-        if(request.getCategoryId() > 0) {
+        if (request.getCategoryId() > 0) {
             existingProduct.setCategory(
                     Category.builder()
                             .id(request.getCategoryId())
-                            .build()
-            );
+                            .build());
         }
 
         return existingProduct;

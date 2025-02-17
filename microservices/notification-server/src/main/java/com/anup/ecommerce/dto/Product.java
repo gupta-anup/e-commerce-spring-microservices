@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class Product {
 
-        private Long productId;
+        private Integer productId;
         private String name;
         private String description;
         private BigDecimal price;

@@ -10,10 +10,10 @@ import lombok.Setter;
 @Getter
 public class OrderLineCreateRequest {
     @NotNull(message = "Order ID is required")
-    private Long orderId;
+    private Integer orderId;
 
     @NotNull(message = "Product ID is required")
-    private Long productId;
+    private Integer productId;
 
     @NotNull(message = "Quantity is required")
     @Positive(message = "Quantity must be greater than 0")

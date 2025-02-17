@@ -5,6 +5,6 @@ import lombok.Builder;
 @Builder
 public class OrderLineResponse {
 
-    private Long id;
+    private Integer id;
     private double quantity;
 }

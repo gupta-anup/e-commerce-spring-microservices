@@ -6,12 +6,12 @@ import java.math.BigDecimal;
 
 @Builder
 public class ProductResponse {
-    private Long id;
+    private Integer id;
     private String name;
     private String description;
     private double availableQuantity;
     private BigDecimal price;
-    private Long categoryId;
+    private Integer categoryId;
     private String categoryName;
     private String categoryDescription;
 }

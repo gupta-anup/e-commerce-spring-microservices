@@ -24,5 +24,5 @@ public class ProductCreateRequest {
     private BigDecimal price;
 
     @NotNull(message = "Product category id is required")
-    private Long categoryId;
+    private Integer categoryId;
 }
